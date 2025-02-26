@@ -9,4 +9,10 @@ export interface Receipt {
   deductions: string;
   total: string;
   notes: string;
+  month: string;
+  year: string;
+  centerAddress: string;
+  centerPhone: string;
+  centerName: string;
+  tuitionCode: string;
 }
