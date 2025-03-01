@@ -7,7 +7,7 @@ import { TDocumentDefinitions } from 'pdfmake/interfaces';
 export async function getCurrentTask() {
   const { tableId, recordId } = await bitable.base.getSelection();
   const table = await bitable.base.getTableById(tableId as string);
-  const tuitionCode = await getTableFieldValue(table, 'Mã Học Phí', recordId!);
+  const tuitionCode = 'test'; //await getTableFieldValue(table, 'Mã Học Phí', recordId!);
   const studentName = await getTableFieldValue(table, 'Tên Học Viên', recordId!);
 
   return { tuitionCode, studentName };
@@ -29,15 +29,15 @@ export async function downloadPdf() {
 
     let receipt = {} as Receipt;
 
-    receipt.tuitionCode = await getTableFieldValue(table, 'Mã Học Phí', sel.recordId!);
+    receipt.tuitionCode = 'test'; //await getTableFieldValue(table, 'Mã Học Phí', sel.recordId!);
     receipt.studentName = await getTableFieldValue(table, 'Tên Học Viên', sel.recordId!);
     receipt.parentName = await getTableFieldValue(table, 'Tên Phụ Huynh', sel.recordId!);
     receipt.class = await getTableFieldValue(table, 'Lớp', sel.recordId!);
     receipt.shift = await getTableFieldValue(table, 'Ca Học', sel.recordId!);
-    receipt.tuitionFees = await getTableFieldValue(table, 'Học Phí Gốc', sel.recordId!);
+    receipt.tuitionFees = await getTableFieldValue(table, 'Học Phí Phải Đóng', sel.recordId!);
     receipt.deductions = await getTableFieldValue(table, 'Số Tiền Giảm', sel.recordId!);
     receipt.materialFees = await getTableFieldValue(table, 'Phí Giáo Trình', sel.recordId!);
-    receipt.total = await getTableFieldValue(table, 'Tổng Số Tiền Đã Đóng', sel.recordId!);
+    receipt.total = await getTableFieldValue(table, 'Số Tiền đã thu', sel.recordId!);
     receipt.notes = await getTableFieldValue(table, 'Ghi Chú', sel.recordId!);
 
     receipt.month = await getTableFieldValue(table, 'Tháng', sel.recordId!);
