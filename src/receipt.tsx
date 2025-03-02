@@ -14,5 +14,10 @@ export interface Receipt {
   centerAddress: string;
   centerPhone: string;
   centerName: string;
-  tuitionCode: string;
+  receiptType: ReceiptType;
+}
+
+export enum ReceiptType {
+  PaymentDue,
+  PaymentCollect,
 }

@@ -14,7 +14,7 @@ const defaultTask = {
 
 export const App = () => {
   const task = useAsync(getCurrentTask, []);
-  const { tuitionCode, studentName } = task.result ?? defaultTask;
+  const { studentName } = task.result ?? defaultTask;
 
   useEffect(() => {
     return bitable.base.onSelectionChange(({ data }) => task.execute());
@@ -23,34 +23,19 @@ export const App = () => {
   if (task.loading) return <div>loading</div>;
   if (task.error) return <div>error: {task.error.message}</div>;
 
-  return (
-    <PureTaskComponment
-      tuitionCode={tuitionCode}
-      studentName={studentName}
-      onDownloadPdf={downloadPdf}
-    />
-  );
+  return <PureTaskComponment studentName={studentName} onDownloadPdf={downloadPdf} />;
 };
 
 interface PureTaskComponmentProps {
-  tuitionCode: string | null;
   studentName: string | null;
   onDownloadPdf: () => void;
 }
 
-const PureTaskComponment: FC<PureTaskComponmentProps> = ({
-  tuitionCode,
-  studentName,
-  onDownloadPdf,
-}) => {
+const PureTaskComponment: FC<PureTaskComponmentProps> = ({ studentName, onDownloadPdf }) => {
   return (
     <Space vertical align='start'>
       <div>
         <Title heading={2}>Xuất phiếu đóng học phí</Title>
-      </div>
-      <div>
-        <Text>Mã học phí: </Text>
-        <Text>{tuitionCode}</Text>
       </div>
       <div>
         <Text>Tên học viên: </Text>
